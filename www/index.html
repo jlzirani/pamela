@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+
+<title>Pamela : a payload for antimater matter exploration and light-nuclei astrophysics</title>
+
+<style media="screen">
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	height: 100%;
+	width: 100%;
+}
+.name {
+	font-size: 5em;
+
+}
+#cloud {
+	position: relative;
+	border: 1px solid black;
+	max-height: 100%;
+}
+#mpd {
+	width: 100%;
+	position: absolute;
+	bottom: 0; left: 0;
+	background-color: orange;
+	height: 2em;
+	font-size: 2.5em;
+	line-height:2em;
+	text-align:center; 
+}
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script>
+function addNode(text,color) {
+	var hex =  genColor(color);
+	$('#cloud').append('<span class="name" style="color:'+hex+';">'+text+'</span></br>');
+
+} 
+
+function genColor(color) {
+	if(color == 0) {
+		return '#a3a3a3';
+	}
+	var hex = Math.floor(Math.random() * 16777216).toString(16);
+	return '#000000'.slice(0, -hex.length) + hex;
+
+}
+
+function updateMac() {
+	  $.getJSON("mac.json", function(data) { 
+		$('#cloud').empty();
+  		_.each(data['grey'], function(num){ addNode(num,0); });
+  		_.each(data['color'], function(num){ addNode(num,1); });
+	//alert(data['hidden']);
+  });
+}
+
+function updateMpd() {
+	$.get("current.txt", function(data) { 
+		$('#title').html(data);
+  	});
+}
+
+function updateBody()
+{
+	updateMac();
+	updateMpd();
+}
+
+$(document).ready(function() {
+	updateBody();
+	window.setInterval(updateBody,1000*60);
+});
+
+</script>
+</head>
+<body>
+<div id="cloud"></div>
+<div id="mpd">♫ <span id="title"></span> ♫</div>
+</body>
+</html>
