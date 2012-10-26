@@ -1,0 +1,24 @@
+The files following files comes from the project https://github.com/sandb/pamela:
+* www/js/pamela-buttons.js
+* www/js/pamela-conf.js (pamela-conf.php in the original project)
+* www/js/pamela-matrices.js
+* www/js/pamela-nodes.js
+* www/js/pamela.js
+* www/pamela.html (index.html in the original project)
+
+Installation:
+=============
+* Copy all files in a webserver.
+* Create or modify a vhost to use the directory "www"
+
+
+Configuration:
+==============
+* Arp-scan must be installed on the system
+* Set the permission to use arp-scan (setuid or sudo, in this configuratio, we use the sudo solution)
+* On the mac.py:
+	set the dictionnary knowMac as follow : {"mac adress1": "name1", "mac adress2": "name2", ... }
+	set the hidden mac adress : ["mac adress1", "mac adress 2", ...]
+	set the resident mac adress : ["resident mac adress1", ...]
+* Define a cron job for script/generate.sh
+
