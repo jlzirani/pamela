@@ -1,4 +1,4 @@
-The files following files comes from the project https://github.com/sandb/pamela:
+The following files come from the project https://github.com/sandb/pamela:
 * www/js/pamela-buttons.js
 * www/js/pamela-conf.js (pamela-conf.php in the original project)
 * www/js/pamela-matrices.js
@@ -15,7 +15,7 @@ Installation:
 Configuration:
 ==============
 * Arp-scan must be installed on the system
-* Set the permission to use arp-scan (setuid or sudo, in this configuratio, we use the sudo solution)
+* Set the permission to use arp-scan (setuid or sudo, we use the sudo solution)
 * On the mac.py:
 	set the dictionnary knowMac as follow : {"mac adress1": "name1", "mac adress2": "name2", ... }
 	set the hidden mac adress : ["mac adress1", "mac adress 2", ...]
