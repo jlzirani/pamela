@@ -58,43 +58,38 @@ Pamela.prototype.updateNodes = function(entities) {
   this.nodes = [];
 
   while (curN.length > 0) {
-    var n = curN.pop();
+    var curNode = curN.pop();
     
+	// if the current node is the nobertNode, we found it :D
+    var bFound = curNode == this.norbertNode;
+		
     // remove dead nodes
-    if (n.isDead)
-      continue;
-    
-    // keep norbert around always
-    if (n == this.norbertNode) {
-      this.nodes.push(n);
-      continue;
-    }
-
-    // was around and keep around?
-    var bFound = false;
-	
+    if (curNode.isDead)
+		bFound = true; // if the node is dead, we don't push it.
+	else
+		this.nodes.push(curNode);  // if the node is alive, we push the nodes.
+    	
+	// was around and keep around?
     for (var i = 0; i < entities['color'].length && !bFound; i++) {
-		if(entities['color'][i] == n.name)
+		if(entities['color'][i] == curNode.name)
 		{
 			bFound = true;
 			entities['color'][i] = null;
 		}
 	}
+	
 	for (var i = 0; i < entities['grey'].length && !bFound; i++) {
-		if(entities['grey'][i] == n.name)
+		if(entities['grey'][i] == curNode.name)
 		{
 			bFound = true;
 			entities['grey'][i] = null;
 		}
 	}
-	
-    this.nodes.push(n);
     
     // no longer around
-    if (!bFound) {
-      n.setMode("dying");
-      this.nodes.push(n);
-    }
+    if (!bFound)
+		curNode.setMode("dying");
+
   }
   
   // wasn't around before
