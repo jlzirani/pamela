@@ -43,14 +43,14 @@ ColorGenerator.prototype.generate = function() {
 var colorGenerator = new ColorGenerator();
 
 // Class Node 
-function Node(name) {
+function Node(name,bGrey) {
 
   this.name = name;
   this.modeTime = (new Date).getTime();
   this.setMode("newNode");
   
   var size = Math.min(width, height);
-  this.color = colorGenerator.generate();
+  this.color = bGrey?[0xA3,0xA3,0xA3]:colorGenerator.generate();
   this.position = new Vector(
     (Math.random() * size) - (size / 2), 
     (Math.random() * size) - (size / 2), 

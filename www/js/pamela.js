@@ -71,20 +71,27 @@ Pamela.prototype.updateNodes = function(entities) {
     }
 
     // was around and keep around?
-    var found = false;    
-    for (var i = 0; i < entities.length; i++) {
-
-      if (entities[i] != n.name)
-        continue;
-
-      this.nodes.push(n);
-      entities[i] = null;
-      found = true;
-      break; 
-    }   
+    var bFound = false;
+	
+    for (var i = 0; i < entities['color'].length && !bFound; i++) {
+		if(entities['color'][i] == n.name)
+		{
+			bFound = true;
+			entities['color'][i] = null;
+		}
+	}
+	for (var i = 0; i < entities['grey'].length && !bFound; i++) {
+		if(entities['grey'][i] == n.name)
+		{
+			bFound = true;
+			entities['grey'][i] = null;
+		}
+	}
+	
+    this.nodes.push(n);
     
     // no longer around
-    if (!found) {
+    if (!bFound) {
       n.setMode("dying");
       this.nodes.push(n);
     }
@@ -92,15 +99,13 @@ Pamela.prototype.updateNodes = function(entities) {
   
   // wasn't around before
   for (var i = 0; i < entities['color'].length; i++) {
-    if (entities['color'][i] == null)
-      continue;
-    this.nodes.push(new Node(entities['color'][i]));
+    if (entities['color'][i] != null)
+		this.nodes.push(new Node(entities['color'][i],false));
   }
 	
    for (var i = 0; i < entities['grey'].length; i++) {
-    if (entities['grey'][i] == null)
-      continue;
-    this.nodes.push(new Node(entities['grey'][i]));
+    if (entities['grey'][i] != null)
+		this.nodes.push(new Node(entities['grey'][i],true));
   }
 };
 
