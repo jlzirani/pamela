@@ -1,4 +1,6 @@
 The following files come from the project https://github.com/sandb/pamela:
+* www/img/dl.png
+* www/img/dl-col.png
 * www/js/pamela-buttons.js
 * www/js/pamela-conf.js (pamela-conf.php in the original project)
 * www/js/pamela-matrices.js
